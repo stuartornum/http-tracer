@@ -9,7 +9,7 @@ app = Flask(__name__)
 def catch_all(path):
     d = request.__dict__
     print d
-    data = {}
+    data = {'tracer': True}
     for i in ['REQUEST_METHOD', 'PATH_INFO', 'SERVER_PROTOCOL', 'QUERY_STRING', 'CONTENT_LENGTH', 'CONTENT_TYPE']:
         try:
             data[i] = d['environ'][i]
@@ -25,6 +25,7 @@ def catch_all(path):
             pass
     data['HEADERS'] = headers
     resp = Response(response=json.dumps(data), status=200, mimetype="application/json")
+    print json.dumps(data)
     return resp
 
 
