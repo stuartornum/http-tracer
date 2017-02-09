@@ -8,8 +8,9 @@ app = Flask(__name__)
                                     'PATCH', 'COPY', 'SEARCH'])
 def catch_all(path):
     d = request.__dict__
+    print d
     data = {}
-    for i in ['METHOD', 'PATH_INFO', 'SERVER_PROTOCOL', 'QUERY_STRING', 'CONTENT_LENGTH', 'CONTENT_TYPE']:
+    for i in ['REQUEST_METHOD', 'PATH_INFO', 'SERVER_PROTOCOL', 'QUERY_STRING', 'CONTENT_LENGTH', 'CONTENT_TYPE']:
         try:
             data[i] = d['environ'][i]
         except:
